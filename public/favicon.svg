@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#0b0b0b"/>
+  <!-- 270° speedometer track -->
+  <path d="M18.34 45.66 A20 20 0 1 1 45.66 45.66"
+        fill="none" stroke="#242424" stroke-width="6" stroke-linecap="round"/>
+  <!-- acid fill (~70% sweep) -->
+  <path d="M18.34 45.66 A20 20 0 0 1 50.6 24.9"
+        fill="none" stroke="#d8fa00" stroke-width="6" stroke-linecap="round"/>
+  <!-- needle -->
+  <line x1="32" y1="32" x2="45" y2="25" stroke="#d8fa00" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="4" fill="#0b0b0b" stroke="#d8fa00" stroke-width="3"/>
+</svg>
