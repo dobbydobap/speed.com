@@ -81,19 +81,23 @@ function App() {
 
       <main className="mx-auto max-w-5xl px-5 sm:px-8">
         {/* ---- hero ---- */}
-        <section className="grid items-center gap-8 py-10 md:grid-cols-2">
-          <div className="order-2 md:order-1">
+        <section className="grid items-center gap-6 py-6 md:grid-cols-2 md:gap-8 md:py-10">
+          <div className="order-1">
             <p className="eyebrow mb-3">{phase === 'error' ? 'Error' : 'Status'}</p>
-            <h2 className="font-display text-5xl leading-[0.92] sm:text-6xl">
+            <h2 className="font-display text-4xl leading-[0.92] sm:text-5xl md:text-6xl">
               {HEADLINE[phase] ?? 'TEST YOUR SPEED'}
             </h2>
-            <p className="mt-4 max-w-sm font-sans text-sm text-muted">
+            <p
+              className={`mt-4 max-w-sm font-sans text-sm text-muted ${
+                phase === 'idle' ? '' : 'hidden md:block'
+              }`}
+            >
               {phase === 'error'
                 ? error ?? 'The test could not reach the measurement endpoints.'
                 : 'Download, upload, ping, jitter & bufferbloat — measured against Cloudflare’s global edge. No signup, no ads.'}
             </p>
 
-            <div className="mt-7">
+            <div className="mt-5 md:mt-7">
               {phase === 'idle' && (
                 <StartButton onClick={run}>Run the test</StartButton>
               )}
@@ -111,7 +115,7 @@ function App() {
             </div>
           </div>
 
-          <div className="order-1 md:order-2">
+          <div className={`order-2 ${phase === 'finished' ? 'hidden md:block' : ''}`}>
             <Gauge
               fraction={display.fraction}
               value={display.value}
