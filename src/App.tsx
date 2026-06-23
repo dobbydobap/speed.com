@@ -7,6 +7,7 @@ import StartButton from './components/StartButton'
 import ResultPanel from './components/ResultPanel'
 import ConnectionInfo from './components/ConnectionInfo'
 import { BrushStroke, Marquee, RegistrationMarks } from './components/Decor'
+import ThemeToggle from './components/ThemeToggle'
 
 const HEADLINE: Record<string, string> = {
   idle: 'TEST YOUR SPEED',
@@ -60,19 +61,20 @@ function App() {
   return (
     <div className="grain relative min-h-full overflow-hidden">
       <RegistrationMarks />
+      <ThemeToggle />
 
       <div className="mx-auto max-w-5xl px-5 pb-16 pt-7 sm:px-8">
         {/* ---- masthead ---- */}
-        <header className="mb-5 flex items-end justify-between">
-          <div className="relative">
+        <header className="mb-5">
+          <div className="relative inline-block">
             <h1 className="font-display text-4xl leading-none tracking-tight sm:text-5xl">
               SPEED<span className="text-acid">/</span>TEST
             </h1>
             <BrushStroke className="absolute -bottom-2 left-0 h-3 w-32 opacity-90" />
           </div>
-          <div className="flex items-center gap-2 text-right">
+          <div className="mt-3 flex items-center gap-2">
             <span className="h-2 w-2 bg-acid animate-pulse-dot" />
-            <span className="eyebrow">Free · Edge-measured</span>
+            <span className="eyebrow">Free · Edge-measured · No ads</span>
           </div>
         </header>
       </div>

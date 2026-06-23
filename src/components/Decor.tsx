@@ -17,7 +17,7 @@ export function RegistrationMarks() {
   return (
     <>
       <Mark className="left-3 top-3" />
-      <Mark className="right-3 top-3" />
+      {/* top-right corner is reserved for the theme toggle */}
       <Mark className="bottom-3 left-3" />
       <Mark className="bottom-3 right-3" />
     </>
@@ -42,10 +42,10 @@ export function Marquee() {
       <div className="animate-marquee flex w-max whitespace-nowrap">
         {strip.map((t, i) => (
           <span key={i} className="flex items-center">
-            <span className="px-5 font-display text-sm uppercase tracking-[0.2em] text-ink">
+            <span className="px-5 font-display text-sm uppercase tracking-[0.2em] text-white">
               {t}
             </span>
-            <span className="text-acid">✦</span>
+            <span className="text-acid light:text-white">✦</span>
           </span>
         ))}
       </div>

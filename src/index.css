@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/* `light:` variant — applies when an element lives under <html data-theme="light">.
+   Used for the few spots that need an explicit per-theme treatment. */
+@custom-variant light (&:where([data-theme='light'] *));
+
 /* ----------------------------------------------------------------------------
    Design tokens — "Acid Streetwear" (Nike x Stussy inspired)
    Deep black canvas, neon acid-green hero accent, electric-blue guide lines,
@@ -19,6 +23,31 @@
   --font-display: 'Anton', 'Archivo', system-ui, sans-serif;
   --font-sans: 'Archivo', system-ui, sans-serif;
   --font-mono: 'Space Mono', ui-monospace, 'Consolas', monospace;
+}
+
+/* ----------------------------------------------------------------------------
+   Light theme — "Calm Editorial" (monochrome serif moodboard)
+   Soft grey paper, near-black ink as the accent (replaces neon acid), muted
+   grey guide lines (replaces cobalt), high-contrast serif display.
+   We override the SAME token variables so every existing utility re-skins
+   automatically. `html[...]` keeps specificity above the :root defaults.
+---------------------------------------------------------------------------- */
+html[data-theme='light'] {
+  --color-bg: #e9e8e3;
+  --color-bg-soft: #f1f0eb;
+  --color-panel: #f4f3ee;
+  --color-line: #cdccc4;
+  --color-acid: #14130f; /* accent = ink: gauge arc, hero numbers, buttons */
+  --color-acid-dim: #4a4944;
+  --color-blue: #8d8b81; /* guide lines / major ticks → soft grey */
+  --color-ink: #14130f;
+  --color-muted: #76746b;
+
+  --font-display: 'Playfair Display', 'Anton', Georgia, serif;
+}
+
+html[data-theme='light'] body {
+  color-scheme: light;
 }
 
 /* ----------------------------------------------------------------------------
@@ -66,10 +95,15 @@ body {
   color: var(--color-muted);
 }
 
-/* Acid selection */
+/* Accent selection (acid on dark, ink on light) — text takes the bg colour */
 ::selection {
   background: var(--color-acid);
-  color: #000;
+  color: var(--color-bg);
+}
+
+/* Slightly stronger paper grain in light mode */
+html[data-theme='light'] .grain::after {
+  opacity: 0.06;
 }
 
 /* Thin custom scrollbar */

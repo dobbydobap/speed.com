@@ -14,11 +14,11 @@ export default function StartButton({
   disabled,
 }: StartButtonProps) {
   const base =
-    'group relative inline-flex items-center gap-3 px-9 py-4 font-display text-2xl uppercase tracking-wide transition-transform active:translate-y-px disabled:opacity-40 disabled:pointer-events-none'
+    'group relative inline-flex items-center gap-3 px-9 py-4 font-display text-2xl uppercase tracking-wide transition-transform active:translate-y-px disabled:opacity-40 disabled:pointer-events-none light:rounded-full'
 
   const skin =
     variant === 'solid'
-      ? 'bg-acid text-black hover:brightness-110'
+      ? 'bg-acid text-bg hover:brightness-110'
       : 'border border-line text-ink hover:border-acid hover:text-acid'
 
   return (
