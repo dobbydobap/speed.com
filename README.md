@@ -1,81 +1,69 @@
-# SPEED/TEST — free, accurate internet speed test
+# SPEED/TEST
 
-**🔗 Live demo: [speedcheck-1mi.pages.dev](https://speedcheck-1mi.pages.dev)**
+A free internet speed test that doesn't try to sell you a VPN.
 
-A free, no-backend internet speed test with a switchable **acid-streetwear (dark)**
-and **calm-editorial (light)** UI. Measures **download, upload, ping, jitter and
-bufferbloat** against Cloudflare's global edge — no signup, no ads, no tracking.
+**Live here → https://speedcheck-1mi.pages.dev**
 
-## Why it's accurate (and free)
+I got tired of speed-test sites that are 80% ads, beg you to "allow notifications,"
+and somehow still feel slow. So I made my own. No ads, no signup, no tracking, and
+no server for me to babysit. Open it, hit run, done.
 
-Measuring a connection's real throughput means saturating the link against a
-server that is both **close to the user** and has **far more bandwidth** than
-the user's pipe. Self-hosting that on a cheap VPS caps accuracy (one region,
-limited bandwidth) and costs money.
+## What you get
 
-Instead this app uses the official open-source
-[`@cloudflare/speedtest`](https://github.com/cloudflare/speedtest) engine — the
-same one behind [speed.cloudflare.com](https://speed.cloudflare.com). It runs
-entirely in the browser against Cloudflare's anycast edge (a node near every
-user), uses `PerformanceResourceTiming` for byte-accurate timing, ramps payloads
-small → large so TCP windows warm up, and aggregates with **percentiles**
-(90th-percentile bandwidth, median latency). Result: Ookla-comparable accuracy,
-**$0** to run, nothing to host or maintain.
+Download, upload, ping, jitter, and bufferbloat — that last one is the lag that
+shows up when your line is actually busy (the thing that wrecks video calls). When
+it finishes it also tells you, in plain language, whether your connection is good
+enough for streaming, gaming, and calls.
 
-## Stack
+## How it's free *and* accurate
 
-- **React 19 + Vite + TypeScript**
-- **Tailwind CSS v4** (design tokens in `src/index.css` under `@theme`)
-- **`@cloudflare/speedtest`** measurement engine
-- Custom SVG gauge — no charting dependency
+Here's the catch with speed tests: to measure your real speed you have to flood
+your connection against a server that's close to you and has way more bandwidth
+than you do. Hosting that myself would cost money and would only be accurate near
+wherever I parked the server.
 
-## Project layout
+So I don't host it. The measuring is done by Cloudflare's open-source engine
+(`@cloudflare/speedtest` — the same one behind speed.cloudflare.com), which runs
+against whichever Cloudflare edge is nearest you. Accurate just about everywhere,
+and it costs me nothing because the site itself is just a static page.
 
-| Path | Role |
-| --- | --- |
-| `src/hooks/useSpeedTest.ts` | Wraps the engine; exposes phase, live Mbps/ms, scores |
-| `src/lib/meta.ts` | Fetches IP / ISP / edge colo from `speed.cloudflare.com/meta` |
-| `src/lib/format.ts` | Speed/latency formatting + log gauge scale |
-| `src/components/Gauge.tsx` | 270° SVG speedometer |
-| `src/components/*` | MetricCard, ResultPanel, ConnectionInfo, StartButton, Decor |
-| `src/App.tsx` | Phase orchestration (idle → ping → download → upload → done) |
+## Two moods
 
-## Develop
+There's a toggle in the top-right corner:
+
+- **Dark** — loud, acid-green, streetwear-poster energy. The default.
+- **Light** — calm, black-and-white, serif, editorial.
+
+It remembers whichever one you pick.
+
+## Run it locally
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # type-check + production build to dist/
-npm run preview  # serve the production build
-npm run lint
+npm run build
 ```
 
-## Deploy (Cloudflare Pages — free)
+React + Vite + TypeScript + Tailwind. The speedometer is hand-rolled SVG — no chart
+library, no bloat.
 
-Static output, no env vars or secrets.
+## Deploy
 
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-
-Either connect the Git repo in the Cloudflare Pages dashboard, or:
+It's a static site, so it'll go anywhere (GitHub Pages, Netlify, whatever). I keep
+it on Cloudflare Pages:
 
 ```bash
 npm run build
-npx wrangler pages deploy dist
+npx wrangler pages deploy dist --project-name=speedcheck
 ```
 
-Works equally on GitHub Pages / Netlify / Vercel as a static site.
+## Honest caveats
 
-## Notes & caveats
+- It leans on Cloudflare's public endpoints to do the measuring. Totally fine for a
+  small project like this — just don't point a million users at it.
+- A full run can chew through a few hundred MB. Maybe not on your last gig of mobile
+  data.
+- No packet-loss number (yet). That needs a TURN server I couldn't be bothered to
+  set up.
 
-- **Third-party endpoints:** measurement traffic goes to Cloudflare's public
-  endpoints (the published library's intended use; fine for low traffic).
-- **Data usage:** a full run on a fast link can transfer **several hundred MB** —
-  mind metered/mobile connections.
-- **Browser-only:** relies on `fetch` + `PerformanceResourceTiming`.
-- **Packet loss** is intentionally omitted: the default engine's packet-loss step
-  needs a WebRTC/TURN relay we don't provision. To add it, supply TURN creds via
-  `turnServerCredsApiUrl` and append a `{ type: 'packetLoss', ... }` entry to the
-  `MEASUREMENTS` array in `useSpeedTest.ts`.
-- **Quality verdict:** the streaming/gaming/video-call stars come from the
-  engine's AIM scores (`results.getScores()`).
+Found a bug? Open an issue. Or don't, and we'll both pretend it's a feature.
