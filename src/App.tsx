@@ -6,7 +6,7 @@ import MetricCard from './components/MetricCard'
 import StartButton from './components/StartButton'
 import ResultPanel from './components/ResultPanel'
 import ConnectionInfo from './components/ConnectionInfo'
-import { BrushStroke, Marquee, RegistrationMarks } from './components/Decor'
+import { BrushStroke, RegistrationMarks } from './components/Decor'
 import ThemeToggle from './components/ThemeToggle'
 
 const HEADLINE: Record<string, string> = {
@@ -63,7 +63,7 @@ function App() {
       <RegistrationMarks />
       <ThemeToggle />
 
-      <div className="mx-auto max-w-5xl px-5 pb-16 pt-7 sm:px-8">
+      <div className="mx-auto max-w-5xl px-5 pb-2 pt-7 sm:px-8">
         {/* ---- masthead ---- */}
         <header className="mb-5">
           <div className="relative inline-block">
@@ -78,8 +78,6 @@ function App() {
           </div>
         </header>
       </div>
-
-      <Marquee />
 
       <main className="mx-auto max-w-5xl px-5 sm:px-8">
         {/* ---- hero ---- */}

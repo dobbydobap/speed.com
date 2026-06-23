@@ -24,35 +24,6 @@ export function RegistrationMarks() {
   )
 }
 
-/** Scrolling marquee of test terms — the loud editorial ticker. */
-export function Marquee() {
-  const items = [
-    'DOWNLOAD',
-    'UPLOAD',
-    'PING',
-    'JITTER',
-    'BUFFERBLOAT',
-    'EDGE-MEASURED',
-    'NO ADS',
-    'FREE FOREVER',
-  ]
-  const strip = [...items, ...items]
-  return (
-    <div className="relative overflow-hidden border-y border-line bg-black py-2">
-      <div className="animate-marquee flex w-max whitespace-nowrap">
-        {strip.map((t, i) => (
-          <span key={i} className="flex items-center">
-            <span className="px-5 font-display text-sm uppercase tracking-[0.2em] text-white">
-              {t}
-            </span>
-            <span className="text-acid light:text-white">✦</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 /** Acid brush stroke — a painted highlight behind/under text. */
 export function BrushStroke({ className }: { className?: string }) {
   return (
