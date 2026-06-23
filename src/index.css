@@ -35,8 +35,8 @@
 html[data-theme='light'] {
   --color-bg: #e9e8e3;
   --color-bg-soft: #f1f0eb;
-  --color-panel: #f4f3ee;
-  --color-line: #cdccc4;
+  --color-panel: #fbfaf6; /* near-white so boxes read lighter than the grey bg */
+  --color-line: #aeac9f; /* darker hairline so outlines don't blend into the bg */
   --color-acid: #14130f; /* accent = ink: gauge arc, hero numbers, buttons */
   --color-acid-dim: #4a4944;
   --color-blue: #8d8b81; /* guide lines / major ticks → soft grey */
