@@ -13,13 +13,15 @@ export default function MetricCard({ label, value, unit, active, note }: MetricC
   return (
     <div
       className={[
-        'relative border bg-panel/60 px-4 py-3 transition-colors',
+        'relative overflow-hidden border bg-panel/60 px-4 py-3 transition-colors',
         active ? 'border-acid' : 'border-line',
       ].join(' ')}
     >
       {/* active corner tick */}
       {active && <span className="absolute right-2 top-2 h-1.5 w-1.5 bg-acid animate-pulse-dot" />}
-      <div className="eyebrow mb-1.5">{label}</div>
+      <div className="mb-1.5 truncate pr-3 font-mono text-[0.58rem] uppercase tracking-[0.11em] text-muted">
+        {label}
+      </div>
       <div className="flex items-baseline gap-1.5">
         <span
           className={[
