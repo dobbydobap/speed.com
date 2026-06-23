@@ -79,9 +79,9 @@ function App() {
         </header>
 
         {/* ---- dashboard: content column + gauge ---- */}
-        <main className="grid flex-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center lg:gap-10">
+        <main className="grid flex-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:gap-x-12 lg:gap-y-4">
           {/* A — status + call to action */}
-          <div className="lg:col-start-1 lg:row-start-1">
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <p className="eyebrow mb-2">{phase === 'error' ? 'Error' : 'Status'}</p>
             <h2 className="font-display text-4xl leading-[0.92] sm:text-5xl md:text-6xl">
               {HEADLINE[phase] ?? 'TEST YOUR SPEED'}
@@ -128,7 +128,7 @@ function App() {
           </div>
 
           {/* C — metrics + verdict + connection */}
-          <div className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">
+          <div className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2 lg:self-start">
             <section className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <MetricCard
                 label="Download"

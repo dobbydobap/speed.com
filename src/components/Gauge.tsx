@@ -50,7 +50,7 @@ export default function Gauge({ fraction, value, unit, label, active }: GaugePro
   const f = Math.max(0, Math.min(1, fraction))
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[248px] select-none sm:max-w-[300px] md:max-w-[360px]">
+    <div className="relative mx-auto aspect-square w-full max-w-[248px] select-none sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px]">
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="h-full w-full overflow-visible">
         <defs>
           <filter id="acidGlow" x="-30%" y="-30%" width="160%" height="160%">
