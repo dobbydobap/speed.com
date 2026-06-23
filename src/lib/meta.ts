@@ -15,12 +15,12 @@ export interface ConnectionMeta {
 }
 
 interface RawMeta {
-  clientIp?: string
-  asOrganization?: string
-  asn?: number
-  colo?: string
-  city?: string
-  country?: string
+  clientIp?: unknown
+  asOrganization?: unknown
+  asn?: unknown
+  colo?: unknown
+  city?: unknown
+  country?: unknown
 }
 
 const META_URL = 'https://speed.cloudflare.com/meta'
@@ -32,12 +32,17 @@ export async function fetchConnectionMeta(
   if (!res.ok) throw new Error(`meta request failed (${res.status})`)
   const raw = (await res.json()) as RawMeta
 
+  // The endpoint's JSON is untrusted — some fields (notably `colo`) have been
+  // seen to come back as objects, so coerce every value to a safe string.
+  const str = (v: unknown, fallback = '') =>
+    typeof v === 'string' && v.length > 0 ? v : fallback
+
   return {
-    ip: raw.clientIp ?? '—',
-    isp: raw.asOrganization ?? 'Unknown ISP',
-    asn: raw.asn ?? null,
-    colo: raw.colo ?? '—',
-    city: raw.city ?? '',
-    country: raw.country ?? '',
+    ip: str(raw.clientIp, '—'),
+    isp: str(raw.asOrganization, 'Unknown ISP'),
+    asn: typeof raw.asn === 'number' ? raw.asn : null,
+    colo: str(raw.colo),
+    city: str(raw.city),
+    country: str(raw.country),
   }
 }
