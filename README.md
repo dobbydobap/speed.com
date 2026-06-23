@@ -1,8 +1,10 @@
 # SPEED/TEST — free, accurate internet speed test
 
-A free, no-backend internet speed test with an acid-streetwear UI. Measures
-**download, upload, ping, jitter and bufferbloat** against Cloudflare's global
-edge — no signup, no ads, no tracking.
+**🔗 Live demo: [speedcheck-1mi.pages.dev](https://speedcheck-1mi.pages.dev)**
+
+A free, no-backend internet speed test with a switchable **acid-streetwear (dark)**
+and **calm-editorial (light)** UI. Measures **download, upload, ping, jitter and
+bufferbloat** against Cloudflare's global edge — no signup, no ads, no tracking.
 
 ## Why it's accurate (and free)
 
