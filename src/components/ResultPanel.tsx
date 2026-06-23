@@ -55,7 +55,7 @@ export default function ResultPanel({ scores }: { scores: Scores }) {
         <span className="font-mono text-[0.66rem] text-muted">AIM</span>
       </header>
 
-      <div className="divide-y divide-line">
+      <div className="grid grid-cols-1 divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         {ordered.map((key) => {
           const s = scores[key]
           const meta = EXPERIENCE_META[key] ?? {
@@ -63,17 +63,20 @@ export default function ResultPanel({ scores }: { scores: Scores }) {
             hint: '',
           }
           return (
-            <div key={key} className="flex items-center justify-between gap-4 px-4 py-3">
+            <div
+              key={key}
+              className="flex items-center justify-between gap-3 px-4 py-2.5 sm:flex-col sm:items-start sm:gap-2"
+            >
               <div>
-                <div className="font-display text-lg uppercase leading-none">{meta.label}</div>
+                <div className="font-display text-base uppercase leading-none">{meta.label}</div>
                 {meta.hint && (
-                  <div className="mt-1 font-mono text-[0.66rem] text-muted">{meta.hint}</div>
+                  <div className="mt-0.5 font-mono text-[0.6rem] text-muted">{meta.hint}</div>
                 )}
               </div>
-              <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center gap-2">
                 <Stars filled={s.classificationIdx + 1} />
                 <span
-                  className={`font-mono text-[0.66rem] uppercase tracking-widest ${
+                  className={`font-mono text-[0.6rem] uppercase tracking-widest ${
                     CLASS_COLOR[s.classificationName] ?? 'text-muted'
                   }`}
                 >

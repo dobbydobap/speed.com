@@ -37,7 +37,7 @@ export default function ConnectionInfo() {
     : ''
 
   return (
-    <div className="grid grid-cols-2 gap-x-6 gap-y-4 border border-line bg-panel/40 px-4 py-4 sm:grid-cols-3">
+    <div className="grid grid-cols-2 gap-x-6 gap-y-3 border border-line bg-panel/40 px-4 py-3 sm:grid-cols-3">
       {failed ? (
         <div className="col-span-full font-mono text-xs text-muted">
           Connection details unavailable.
